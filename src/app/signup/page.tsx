@@ -23,9 +23,11 @@ const SignupPage = () => {
         swal.fire({
           icon: "error",
           title: "Login Failure",
-          text: "Invalid username or password",
+          text: "Bad Request",
           showConfirmButton: false,
           timer: 1500,
+          toast: true,
+          position: "top-right",
         });
       }
     });
@@ -39,11 +41,13 @@ const SignupPage = () => {
         .fire({
           icon: "success",
           title: "Signup Success",
-          text: "Redirecting to Application ...",
+          text: "Redirecting to login ...",
           showConfirmButton: false,
           timer: 1500,
+          toast: true,
+          position: "top-right",
         })
-        .finally(() => router.push("/"));
+        .finally(() => router.push("/login"));
     }
   }, [data, dispatch, router, swal]);
 

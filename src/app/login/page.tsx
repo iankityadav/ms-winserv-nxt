@@ -26,6 +26,8 @@ const LoginPage = () => {
           text: "Invalid username or password",
           showConfirmButton: false,
           timer: 1500,
+          toast: true,
+          position: "top-right",
         });
       } else {
         swal
@@ -35,6 +37,8 @@ const LoginPage = () => {
             text: "Redirecting to Application ...",
             showConfirmButton: false,
             timer: 1500,
+            toast: true,
+            position: "top-right",
           })
           .finally(() => router.push("/"));
       }
@@ -44,7 +48,8 @@ const LoginPage = () => {
   useEffect(() => {
     console.log(data);
     if (data) {
-      dispatch(setCredentials(data));
+      const x = dispatch(setCredentials({ token: data.access_token }));
+      console.log(x);
     }
   }, [data, dispatch]);
 

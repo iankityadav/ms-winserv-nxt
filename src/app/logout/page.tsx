@@ -1,6 +1,16 @@
+"use client";
+import { logOut } from "@/store/auth/auth.slice";
+import { useAppDispatch } from "@/store/store";
 import Link from "next/link";
+import { useEffect } from "react";
 
-const page = () => {
+const Logout = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(logOut());
+  }, [dispatch]);
+
   return (
     <div className="h-screen flex flex-col justify-center items-center gap-3">
       <div className="bg-white flex flex-col justify-center items-center gap-3 p-16 w-full">
@@ -18,4 +28,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Logout;
