@@ -1,12 +1,14 @@
 import { apiSlice } from "./api.slice";
+import qs from "qs";
 
 export const appConfig = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.query({
       query: (payload: any) => ({
-        url: "/login",
+        url: "/token",
+        headers: { "content-type": "application/x-www-form-urlencoded" },
         method: "POST",
-        body: payload,
+        body: qs.stringify(payload),
       }),
       transformResponse(response: any) {
         console.log(response);
