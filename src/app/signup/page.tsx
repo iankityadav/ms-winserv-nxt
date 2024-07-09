@@ -1,11 +1,9 @@
 "use client";
 import InputBox from "@/components/utils/inputBox";
 import SubmitButton from "@/components/utils/submitButton";
-import { setCredentials } from "@/store/auth/auth.slice";
 import { useLazySignupQuery } from "@/store/services/api.endpoint";
-import { useAppDispatch } from "@/store/store";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -13,7 +11,7 @@ const SignupPage = () => {
   const [signup, { data, isError, isLoading, isFetching }] =
     useLazySignupQuery();
   const [formData, setFormData] = useState<object>();
-  const dispatch = useAppDispatch();
+
   const router = useRouter();
   const swal = withReactContent(Swal);
 
@@ -29,27 +27,21 @@ const SignupPage = () => {
           toast: true,
           position: "top-right",
         });
+      } else {
+        swal
+          .fire({
+            icon: "success",
+            title: "Signup Success",
+            text: "Redirecting to login ...",
+            showConfirmButton: false,
+            timer: 1500,
+            toast: true,
+            position: "top-right",
+          })
+          .finally(() => router.push("/login"));
       }
     });
   };
-
-  useEffect(() => {
-    console.log(data);
-    if (data) {
-      dispatch(setCredentials(data));
-      swal
-        .fire({
-          icon: "success",
-          title: "Signup Success",
-          text: "Redirecting to login ...",
-          showConfirmButton: false,
-          timer: 1500,
-          toast: true,
-          position: "top-right",
-        })
-        .finally(() => router.push("/login"));
-    }
-  }, [data, dispatch, router, swal]);
 
   const handleChange = (label: string) => {
     return (e: any) => {
