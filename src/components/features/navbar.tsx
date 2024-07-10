@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 
 const poppins = Poppins({ weight: "200", subsets: ["latin"] });
 const NavBar = () => {
-  const { token } = useAppSelector((state) => state.auth);
+  const { token } = useAppSelector((state) => state.authenticationReducer);
   useEffect(() => {}, [token]);
   return (
     <nav
@@ -29,7 +29,7 @@ const NavBar = () => {
             Home
           </Link>
           <Link
-            href="/teams"
+            href="/servers"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Servers
