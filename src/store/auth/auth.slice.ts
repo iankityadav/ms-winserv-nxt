@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { appConfig } from "../services/api.endpoint";
 
 const initialState = {
-  user: null,
-  token: null,
+  user: {},
+  token: "",
 };
 
 const authSlice = createSlice({
@@ -16,6 +17,15 @@ const authSlice = createSlice({
       state.user = action.payload.user;
     },
     logOut: () => initialState,
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      appConfig.endpoints.getUserDetail.matchFulfilled,
+      (state, action) => {
+        console.log(action);
+        state.user = action.payload;
+      }
+    );
   },
 });
 

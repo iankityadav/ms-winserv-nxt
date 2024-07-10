@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { selectToken } from "../auth/auth.slice";
+import { RootState } from "../store";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: process.env.NEXT_PUBLIC_APP_URI,
-  prepareHeaders: (headers, { getState }) => {
-    const token = selectToken(getState());
+  prepareHeaders: async (headers, { getState }) => {
+    const state = await getState();
+    const { token } = (state as RootState).authenticationReducer;
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }

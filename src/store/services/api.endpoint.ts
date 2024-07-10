@@ -26,7 +26,21 @@ export const appConfig = apiSlice.injectEndpoints({
         return response;
       },
     }),
+    getUserDetail: builder.query({
+      query: (payload: any) => ({
+        url: "/users/me",
+        method: "GET",
+      }),
+      transformResponse(response: any) {
+        console.log(response);
+        return response;
+      },
+    }),
   }),
 });
 
-export const { useLazyLoginQuery, useLazySignupQuery } = appConfig;
+export const {
+  useLazyLoginQuery,
+  useLazySignupQuery,
+  useLazyGetUserDetailQuery,
+} = appConfig;

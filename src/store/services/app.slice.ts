@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: {} as any,
+  user: {},
 };
 
-const authSlice = createSlice({
+export const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
@@ -13,3 +13,5 @@ const authSlice = createSlice({
     },
   },
 });
+
+export const {} = appSlice;
