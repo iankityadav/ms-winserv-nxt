@@ -14,11 +14,16 @@ export default function Home() {
     console.log(user);
   }, [getUserDetail, user, token]);
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex flex-col justify-center items-center">
+      {user.name ? (
+        <div className="text-xl font-light">Hi {user.name}!</div>
+      ) : (
+        <></>
+      )}
       <div className="sm:w-[80vw] w-[90vw] bg-white rounded-lg shadow-md m-4 mt-16">
-        <div className="grid sm:grid-cols-2 grid-cols-1">
+        <div className="sm:grid flex sm:grid-cols-2 grid-cols-1">
           <div
-            className="h-full w-full bg-white bg-no-repeat bg-contain bg-right-top block"
+            className="h-full w-full bg-right-top block"
             style={{
               background: "url(/landing.png)",
               backgroundSize: "cover",
