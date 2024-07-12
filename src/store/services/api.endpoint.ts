@@ -36,6 +36,23 @@ export const appConfig = apiSlice.injectEndpoints({
         return response;
       },
     }),
+    getServersList: builder.query({
+      query: (payload: any) => ({
+        url: "/servers",
+        method: "GET",
+      }),
+      transformResponse(response: any) {
+        console.log(response);
+        return response;
+      },
+    }),
+    getServicesList: builder.query({
+      query: (payload: any) => ({
+        url: `/servers/${payload.id}/services`,
+        headers: { Accept: "application/json" },
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -43,4 +60,6 @@ export const {
   useLazyLoginQuery,
   useLazySignupQuery,
   useLazyGetUserDetailQuery,
+  useLazyGetServersListQuery,
+  useLazyGetServicesListQuery,
 } = appConfig;
