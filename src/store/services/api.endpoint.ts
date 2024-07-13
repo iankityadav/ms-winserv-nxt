@@ -53,6 +53,20 @@ export const appConfig = apiSlice.injectEndpoints({
         method: "GET",
       }),
     }),
+    startService: builder.query({
+      query: (payload: any) => ({
+        url: `/servers/${payload.id}/services/${payload.name}/start`,
+        headers: { Accept: "application/json" },
+        method: "POST",
+      }),
+    }),
+    stopService: builder.query({
+      query: (payload: any) => ({
+        url: `/servers/${payload.id}/services/${payload.name}/stop`,
+        headers: { Accept: "application/json" },
+        method: "POST",
+      }),
+    }),
   }),
 });
 
@@ -62,4 +76,6 @@ export const {
   useLazyGetUserDetailQuery,
   useLazyGetServersListQuery,
   useLazyGetServicesListQuery,
+  useLazyStartServiceQuery,
+  useLazyStopServiceQuery,
 } = appConfig;
